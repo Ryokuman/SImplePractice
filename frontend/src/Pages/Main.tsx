@@ -1,8 +1,13 @@
+import { Grid } from "@mui/material";
+
+import PostCard from "../Component/PostCard";
+
 function Main() {
     return (
-        <div>
-            <p>Main</p>
-        </div>
+        <Grid>
+            <Grid></Grid>
+            <PostCard />
+        </Grid>
     );
 }
 

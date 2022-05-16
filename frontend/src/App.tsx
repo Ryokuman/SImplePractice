@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import { Container } from "@mui/material";
 
 import Header from "./Component/Header";
 import Footer from "./Component/Footer";
@@ -15,21 +17,25 @@ import SignUp from "./Pages/SignUp";
 import Intro from "./Pages/Intro";
 
 function App() {
+    const [search, setSearch] = useState<string | null>("");
+
     return (
         <Router>
-            <Header />
-            <Routes>
-                <Route path="/*" element={<Error />} />
-                <Route path="/intro" element={<Intro />} />
-                <Route path="/" element={<Main />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/followerlist" element={<FollowerList />} />
-                <Route path="/followlist" element={<FollowList />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/search" element={<Search />} />
-                <Route path="/signIn" element={<SignIn />} />
-                <Route path="/signUp" element={<SignUp />} />
-            </Routes>
+            <Header search={search} setSearch={setSearch} />
+            <Container style={{ position: "fixed", top: "40px" }}>
+                <Routes>
+                    <Route path="/*" element={<Error />} />
+                    <Route path="/intro" element={<Intro />} />
+                    <Route path="/" element={<Main />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/followerlist" element={<FollowerList />} />
+                    <Route path="/followlist" element={<FollowList />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/search" element={<Search />} />
+                    <Route path="/signIn" element={<SignIn />} />
+                    <Route path="/signUp" element={<SignUp />} />
+                </Routes>
+            </Container>
             <Footer />
         </Router>
     );
