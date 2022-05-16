@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { Container } from "@mui/material";
@@ -17,11 +17,11 @@ import SignUp from "./Pages/SignUp";
 import Intro from "./Pages/Intro";
 
 function App() {
-    const [search, setSearch] = useState<string | null>("");
+    const searchRef = useRef('');
 
     return (
         <Router>
-            <Header search={search} setSearch={setSearch} />
+            <Header searchRef={searchRef} />
             <Container style={{ position: "fixed", top: "40px" }}>
                 <Routes>
                     <Route path="/*" element={<Error />} />

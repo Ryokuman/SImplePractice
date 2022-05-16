@@ -1,30 +1,38 @@
 import { Grid, styled, Box, TextField } from "@mui/material";
-import { useState, useRef } from "react";
+import { useState, useEffect, type MutableRefObject } from "react";
 import "../Assets/Styles/Header.css";
 
 interface ISearchInterface {
-    search: string | null;
-    setSearch: React.Dispatch<React.SetStateAction<string | null>>;
+    searchRef: MutableRefObject<string>
 }
 
-function SearchField({ search, setSearch }: ISearchInterface) {
+function SearchField({ searchRef }: ISearchInterface) {
+    const [localSearch, setLocalSearch] = useState<string>('');
+
+
+    useEffect(() => {
+        searchRef.current = localSearch;
+    }, [localSearch]);
+
+
+
     return (
         <TextField
             style={{ width: "90%" }}
             size="small"
             variant="outlined"
-            // value={search}
+            value={localSearch}
             label="검색"
             autoFocus
             onChange={(e) => {
                 console.log(e.target.value);
-                setSearch(e.target.value);
+                setLocalSearch(e.target.value);
             }}
         />
     );
 }
 
-function Header({ search, setSearch }: ISearchInterface) {
+function Header({ searchRef }: ISearchInterface) {
     const HeaderGridItem = styled(Grid)({
         textAlign: "center",
     });
@@ -46,7 +54,7 @@ function Header({ search, setSearch }: ISearchInterface) {
                     </a>
                 </HeaderGridItem>
                 <HeaderGridItem item xs={6}>
-                    <SearchField search={search} setSearch={setSearch} />
+                    <SearchField searchRef={searchRef} />
                 </HeaderGridItem>
                 <HeaderGridItem item xs={3}>
                     item
