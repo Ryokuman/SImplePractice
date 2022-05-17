@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { Container } from "@mui/material";
+import { Container, Box } from "@mui/material";
 
 import Header from "./Component/Header";
 import Footer from "./Component/Footer";
@@ -29,6 +29,7 @@ interface IuserInterface {
     follower: string[];
     followed: string[];
     isLogin: boolean;
+    profilePic: string;
     posts: IpostInterface[];
 }
 
@@ -48,11 +49,11 @@ function App() {
                 isLogin={isLogin}
                 setIsLogin={setIsLogin}
             />
-            <Container style={{ position: "fixed", top: "55px" }}>
+            <Box style={{ position: "fixed", top: "55px", width: "100%" }}>
                 <Routes>
                     <Route path="/*" element={<Error />} />
                     <Route path="/intro" element={<Intro />} />
-                    <Route path="/" element={<Main />} />
+                    <Route path="/" element={<Main user={SampleUser} />} />
                     <Route path="/blog" element={<Blog />} />
                     <Route path="/followerlist" element={<FollowerList />} />
                     <Route path="/followlist" element={<FollowList />} />
@@ -61,7 +62,7 @@ function App() {
                     <Route path="/signIn" element={<SignIn />} />
                     <Route path="/signUp" element={<SignUp />} />
                 </Routes>
-            </Container>
+            </Box>
             <Footer />
         </Router>
     );
@@ -74,5 +75,7 @@ const SampleUser: IuserInterface = {
     follower: ["김민수", "박민수", "이진형"],
     followed: ["김민수", "박민수", "이진형"],
     isLogin: true,
+    profilePic:
+        "https://preview.redd.it/2aoiyozxkn931.jpg?auto=webp&s=8b1060ef8b9a92d02cc785670a14d2890a0ddbf2",
     posts: [],
 };

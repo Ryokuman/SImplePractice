@@ -92,14 +92,22 @@ function IconField({ isLogin, setIsLogin }: IisLoginInterface) {
 
 function SignUpSignIn() {
     return (
-        <div>
-            <Button variant="text" style={{ marginTop: "2px" }}>
-                SignUp
-            </Button>
-            <Button variant="text" style={{ marginTop: "2px" }} color="info">
-                SignIn
-            </Button>
-        </div>
+        <Grid container direction="row" justifyContent="space-around">
+            <Grid item>
+                <Button variant="text" style={{ marginTop: "2px" }}>
+                    SignUp
+                </Button>
+            </Grid>
+            <Grid item>
+                <Button
+                    variant="text"
+                    style={{ marginTop: "2px" }}
+                    color="info"
+                >
+                    SignIn
+                </Button>
+            </Grid>
+        </Grid>
     );
 }
 
