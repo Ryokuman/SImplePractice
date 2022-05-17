@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { Container } from "@mui/material";
@@ -16,13 +16,39 @@ import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
 import Intro from "./Pages/Intro";
 
+interface IpostInterface {
+    userName: string;
+    date: string;
+    title: string;
+    img: string;
+    contents: string;
+}
+
+interface IuserInterface {
+    name: string;
+    follower: string[];
+    followed: string[];
+    isLogin: boolean;
+    posts: IpostInterface[];
+}
+
 function App() {
-    const [search, setSearch] = useState<string | null>("");
+    const [search, setSearch] = useState<string>("");
+    const [isLogin, setIsLogin] = useState<boolean>(SampleUser.isLogin);
+
+    useEffect(() => {
+        SampleUser.isLogin = isLogin;
+    }, [isLogin]);
 
     return (
         <Router>
-            <Header search={search} setSearch={setSearch} />
-            <Container style={{ position: "fixed", top: "40px" }}>
+            <Header
+                search={search}
+                setSearch={setSearch}
+                isLogin={isLogin}
+                setIsLogin={setIsLogin}
+            />
+            <Container style={{ position: "fixed", top: "55px" }}>
                 <Routes>
                     <Route path="/*" element={<Error />} />
                     <Route path="/intro" element={<Intro />} />
@@ -42,3 +68,11 @@ function App() {
 }
 
 export default App;
+
+const SampleUser: IuserInterface = {
+    name: "김용민",
+    follower: ["김민수", "박민수", "이진형"],
+    followed: ["김민수", "박민수", "이진형"],
+    isLogin: true,
+    posts: [],
+};

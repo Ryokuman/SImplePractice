@@ -1,6 +1,12 @@
 import { Box, Grid, styled } from "@mui/material";
 
-function PostCard() {
+interface IpostCardInterface {
+    img: string;
+    title: string;
+    postNum: number;
+}
+
+function PostCard({ img, title }: IpostCardInterface) {
     const PostSquare = styled(Box)({
         height: "200px",
         width: "200px",
@@ -9,9 +15,7 @@ function PostCard() {
 
     return (
         <PostSquare>
-            <Grid>
-                <p>heklo</p>
-            </Grid>
+            <img src={img} alt="" />
         </PostSquare>
     );
 }
