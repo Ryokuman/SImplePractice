@@ -4,5 +4,5 @@
     left: 0;
     right: 0;
     width: 100%;
-    background-color: red;
+    box-shadow: 1px 1px 5px black;
 }
