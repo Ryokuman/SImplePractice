@@ -1,12 +1,11 @@
+import ReactDOM from "react-dom/client";
 import { Button, Grid, Link } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HeartBrokenIcon from "@mui/icons-material/HeartBroken";
 
+import Calendar from "../Component/Calendar";
 import PostCard from "../Component/PostCard";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction";
 import { useState } from "react";
 
 interface IuserInterface {
@@ -16,7 +15,7 @@ interface IuserInterface {
     isLogin: boolean;
     profilePic: string;
     posts: IpostInterface[];
-}
+} // 유저 정보 인터페이스
 
 interface IpostInterface {
     userName: string;
@@ -24,29 +23,7 @@ interface IpostInterface {
     title: string;
     img: string;
     contents: string;
-}
-
-function Calendar() {
-    return (
-        <FullCalendar
-            height="780px"
-            plugins={[dayGridPlugin, interactionPlugin]}
-            initialView="dayGridMonth"
-            weekends={false}
-            events={[
-                { title: "event 1", date: "2022-05-17" },
-                { title: "event 2", date: "2022-05-18" },
-                {
-                    title: "test",
-                    date: "2022-05-19",
-                    url: "https://fullcalendar.io/docs/event-object",
-                },
-            ]}
-            dateClick={() => console.log("hello")}
-            eventMouseEnter={(e) => console.log(e)}
-        />
-    );
-}
+} // 포스팅 정보 인터페이스
 
 function ProfileBox({ user }: { user: IuserInterface }) {
     const [isFollowed, setIsFollowed] = useState<boolean>(true);
@@ -103,6 +80,7 @@ function ProfileBox({ user }: { user: IuserInterface }) {
                         </Grid>
                         <Grid item textAlign="center">
                             <Button
+                                style={{ height: "100%", width: "100%" }}
                                 onMouseEnter={() => {
                                     setIseEntered(true);
                                 }}
@@ -120,9 +98,9 @@ function ProfileBox({ user }: { user: IuserInterface }) {
                                         <FavoriteIcon />
                                     )
                                 ) : isEntered ? (
-                                    <FavoriteBorderIcon />
-                                ) : (
                                     <FavoriteIcon />
+                                ) : (
+                                    <FavoriteBorderIcon />
                                 )}
                             </Button>
                         </Grid>
