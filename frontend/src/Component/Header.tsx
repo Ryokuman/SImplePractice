@@ -8,6 +8,30 @@ import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 import "../Assets/Styles/Header.css";
+import { useState } from "react";
+
+interface IuserInterface {
+    nickName: string;
+    follower: string[];
+    follow: string[];
+    name: string;
+    id: string;
+    password: string;
+    posts: number[];
+    isLogin: boolean;
+    profilePic: string;
+}
+
+interface IloginInterface {
+    isLogin: boolean;
+    setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
+    user: IuserInterface;
+}
+
+interface IsearchInterface {
+    search: string;
+    setSearch: React.Dispatch<React.SetStateAction<string>>;
+}
 
 const HeaderGridItem = styled(Grid)({
     textAlign: "center",
@@ -19,25 +43,7 @@ const ToolBoxContainer = styled(Box)({
     borderRadius: "10px",
 });
 
-interface ISearchFieldInterface {
-    search: string;
-    setSearch: React.Dispatch<React.SetStateAction<string>>;
-}
-
-interface IheaderInterface {
-    search: string;
-    setSearch: React.Dispatch<React.SetStateAction<string>>;
-    isLogin: boolean;
-    setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-interface IisLoginInterface {
-    isLogin: IisLogin;
-    setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
-}
-type IisLogin = boolean;
-
-function SearchField({ search, setSearch }: ISearchFieldInterface) {
+function SearchField({ search, setSearch }: IsearchInterface) {
     return (
         <Grid container>
             <Grid item xs={11}>
@@ -61,13 +67,17 @@ function SearchField({ search, setSearch }: ISearchFieldInterface) {
     );
 }
 
-function IconField({ isLogin, setIsLogin }: IisLoginInterface) {
+function IconField({ isLogin, setIsLogin, user }: IloginInterface) {
     return (
         <div>
-            <Button variant="text" style={{ marginTop: "2px" }}>
+            <Button
+                variant="text"
+                style={{ marginTop: "2px" }}
+                href={`http://localhost:3000/${user.nickName}`}
+            >
                 <PersonIcon color="action" />
             </Button>
-            <Button variant="text" style={{ marginTop: "2px" }}>
+            <Button variant="text" style={{ marginTop: "2px" }} href={``}>
                 <NotificationsIcon color="action" />
             </Button>
             <Button variant="text" style={{ marginTop: "2px" }}>
@@ -81,7 +91,6 @@ function IconField({ isLogin, setIsLogin }: IisLoginInterface) {
                 style={{ marginTop: "2px" }}
                 onClick={() => {
                     setIsLogin(false);
-                    console.log(isLogin);
                 }}
             >
                 <LogoutIcon color="action" />
@@ -94,7 +103,11 @@ function SignUpSignIn() {
     return (
         <Grid container direction="row" justifyContent="space-around">
             <Grid item>
-                <Button variant="text" style={{ marginTop: "2px" }}>
+                <Button
+                    variant="text"
+                    style={{ marginTop: "2px" }}
+                    href="http://localhost:3000/signup"
+                >
                     SignUp
                 </Button>
             </Grid>
@@ -103,6 +116,7 @@ function SignUpSignIn() {
                     variant="text"
                     style={{ marginTop: "2px" }}
                     color="info"
+                    href="http://localhost:3000/signin"
                 >
                     SignIn
                 </Button>
@@ -111,11 +125,15 @@ function SignUpSignIn() {
     );
 }
 
-function ToolBox({ isLogin, setIsLogin }: IisLoginInterface) {
+function ToolBox({ isLogin, setIsLogin, user }: IloginInterface) {
     return (
         <ToolBoxContainer>
             {isLogin ? (
-                <IconField isLogin={isLogin} setIsLogin={setIsLogin} />
+                <IconField
+                    isLogin={isLogin}
+                    setIsLogin={setIsLogin}
+                    user={user}
+                />
             ) : (
                 <SignUpSignIn />
             )}
@@ -123,7 +141,10 @@ function ToolBox({ isLogin, setIsLogin }: IisLoginInterface) {
     );
 }
 
-function Header({ search, setSearch, isLogin, setIsLogin }: IheaderInterface) {
+function Header({ user }: { user: IuserInterface }) {
+    const [isLogin, setIsLogin] = useState<boolean>(user.isLogin);
+    const [search, setSearch] = useState<string>("");
+
     return (
         <div id="Header">
             <Grid
@@ -145,7 +166,11 @@ function Header({ search, setSearch, isLogin, setIsLogin }: IheaderInterface) {
                     <SearchField search={search} setSearch={setSearch} />
                 </HeaderGridItem>
                 <HeaderGridItem item xs={2.5}>
-                    <ToolBox setIsLogin={setIsLogin} isLogin={isLogin} />
+                    <ToolBox
+                        setIsLogin={setIsLogin}
+                        isLogin={isLogin}
+                        user={user}
+                    />
                 </HeaderGridItem>
             </Grid>
         </div>

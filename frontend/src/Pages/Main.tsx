@@ -5,17 +5,20 @@ import HeartBrokenIcon from "@mui/icons-material/HeartBroken";
 
 import Calendar from "../Component/Calendar";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 interface IuserInterface {
     nickName: string;
-    follower: string[];
     follow: string[];
+    follower: string[];
     name: string;
     id: string;
     password: string;
     posts: number[];
     isLogin: boolean;
     profilePic: string;
+    likedPosts: number[];
+    likedComments: number[];
 } // 유저 정보 인터페이스
 
 interface IpostInterface {
@@ -51,6 +54,7 @@ function ProfileBox({ user }: { user: IuserInterface }) {
                     />
                 </Grid>
                 <Grid item>{user.name}</Grid>
+                <Grid item>{user.nickName}</Grid>
                 <Grid item>
                     <Grid
                         container
@@ -112,7 +116,24 @@ function ProfileBox({ user }: { user: IuserInterface }) {
     );
 }
 
-function Main({ user }: { user: IuserInterface }) {
+function Main() {
+    const { username } = useParams<string>();
+
+    const SampleUser: IuserInterface = {
+        name: "김용민",
+        id: "ryokuman",
+        password: "1q2w3e4r",
+        nickName: `@${username}`,
+        follower: ["김민수", "박민수", "이진형"],
+        follow: ["김민수", "박민수", "이진형"],
+        isLogin: true,
+        profilePic:
+            "https://preview.redd.it/2aoiyozxkn931.jpg?auto=webp&s=8b1060ef8b9a92d02cc785670a14d2890a0ddbf2",
+        posts: [1, 2, 3],
+        likedPosts: [1, 3],
+        likedComments: [],
+    };
+
     return (
         <Grid
             container
@@ -126,7 +147,7 @@ function Main({ user }: { user: IuserInterface }) {
                 <Calendar />
             </Grid>
             <Grid item xs={4} marginTop="70px">
-                <ProfileBox user={user} />
+                <ProfileBox user={SampleUser} />
             </Grid>
         </Grid>
     );

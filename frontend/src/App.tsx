@@ -6,12 +6,11 @@ import { Box } from "@mui/material";
 import Header from "./Component/Header";
 import Footer from "./Component/Footer";
 import Error from "./Pages/Error";
-import Blog from "./Pages/Blog";
-import FollowerList from "./Pages/FollowerList";
-import FollowList from "./Pages/FollowList";
+import FollowFollower from "./Pages/FollowFollower";
 import Main from "./Pages/Main";
 import Profile from "./Pages/Profile";
 import Search from "./Pages/Search";
+import Notification from "./Pages/Norification";
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
 import Intro from "./Pages/Intro";
@@ -38,33 +37,21 @@ interface IuserInterface {
 }
 
 function App() {
-    const [search, setSearch] = useState<string>("");
-    const [isLogin, setIsLogin] = useState<boolean>(SampleUser.isLogin);
-
-    useEffect(() => {
-        SampleUser.isLogin = isLogin;
-    }, [isLogin]);
-
     return (
         <Router>
-            <Header
-                search={search}
-                setSearch={setSearch}
-                isLogin={isLogin}
-                setIsLogin={setIsLogin}
-            />
+            <Header user={SampleUser} />
             <Box style={{ position: "fixed", top: "55px", width: "100%" }}>
                 <Routes>
                     <Route path="/*" element={<Error />} />
-                    <Route path="/intro" element={<Intro />} />
-                    <Route path="/" element={<Main user={SampleUser} />} />
-                    <Route path="/blog" element={<Blog />} />
-                    <Route path="/followerlist" element={<FollowerList />} />
-                    <Route path="/followlist" element={<FollowList />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/search" element={<Search />} />
-                    <Route path="/signIn" element={<SignIn />} />
-                    <Route path="/signUp" element={<SignUp />} />
+                    <Route path="/" element={<Intro />} />
+                    <Route path=":username" element={<Main />}>
+                        <Route path="notification" element={<Notification />} />
+                        <Route path=":isfollow" element={<FollowFollower />} />
+                    </Route>
+                    <Route path="profile" element={<Profile />} />
+                    <Route path="search" element={<Search />} />
+                    <Route path="signIn" element={<SignIn />} />
+                    <Route path="signUp" element={<SignUp />} />
                 </Routes>
             </Box>
             <Footer />
