@@ -1,11 +1,9 @@
-import ReactDOM from "react-dom/client";
 import { Button, Grid, Link } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HeartBrokenIcon from "@mui/icons-material/HeartBroken";
 
 import Calendar from "../Component/Calendar";
-import PostCard from "../Component/PostCard";
 import { useState } from "react";
 
 interface IuserInterface {

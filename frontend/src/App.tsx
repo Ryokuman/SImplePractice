@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { Container, Box } from "@mui/material";
+import { Box } from "@mui/material";
 
 import Header from "./Component/Header";
 import Footer from "./Component/Footer";

@@ -1,4 +1,3 @@
-import { getMonth, startOfMonth, getWeeksInMonth, startOfWeek } from "date-fns";
 import { Grid, Typography, Button } from "@mui/material";
 import { useState } from "react";
 
@@ -136,7 +135,7 @@ function ClaendarDayForm({ day }: { day: number }) {
                 backgroundColor: "white",
             }}
         >
-            <Typography sx={{ color: day == 0 ? "red" : "black" }}>
+            <Typography sx={{ color: day === 0 ? "red" : "black" }}>
                 {week[day]}
             </Typography>
         </div>
@@ -153,8 +152,10 @@ function CalendarForm({ date }: { date: Date }) {
     let isToday: boolean = false;
     let isEnd: boolean = true; // 끝나면 false 안끝나면 true
     let isNow: boolean =
-        date.getFullYear === nowDate.getFullYear &&
-        date.getMonth === nowDate.getMonth;
+        date.getFullYear() === nowDate.getFullYear() &&
+        date.getMonth() === nowDate.getMonth();
+
+    console.log(isNow);
 
     const newDate = new Date(date.getFullYear(), date.getMonth(), 1);
     const lastDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
