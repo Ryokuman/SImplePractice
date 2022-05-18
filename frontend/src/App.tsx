@@ -17,20 +17,24 @@ import SignUp from "./Pages/SignUp";
 import Intro from "./Pages/Intro";
 
 interface IpostInterface {
-    userName: string;
-    date: string;
+    postNum: number;
+    nickName: string;
     title: string;
-    img: string;
     contents: string;
+    img: string;
+    date: Date;
 }
 
 interface IuserInterface {
-    name: string;
+    nickName: string;
     follower: string[];
-    followed: string[];
+    follow: string[];
+    name: string;
+    id: string;
+    password: string;
+    posts: number[];
     isLogin: boolean;
     profilePic: string;
-    posts: IpostInterface[];
 }
 
 function App() {
@@ -70,12 +74,42 @@ function App() {
 
 export default App;
 
+const SmaplePost1: IpostInterface = {
+    postNum: 1,
+    nickName: "@ryokuman",
+    title: "1번 포스팅",
+    contents: "안녕하세요",
+    img: "https://blog.kakaocdn.net/dn/uVzcY/btrs8RnnubZ/hJVo53gyagmVG5XtkCvMB1/img.png",
+    date: new Date(2022, 5, 17),
+};
+
+const SmaplePost2: IpostInterface = {
+    postNum: 2,
+    nickName: "@ryokuman",
+    title: "2번 포스팅",
+    contents: "안녕하세요",
+    img: "https://www.sportager.net/files/attach/images/7370560/750/373/007/Dynamax%20System%20for%20AWD.jpg",
+    date: new Date(2022, 5, 17),
+};
+
+const SmaplePost3: IpostInterface = {
+    postNum: 3,
+    nickName: "@ryokuman",
+    title: "3번 포스팅",
+    contents: "안녕하세요",
+    img: "https://pbs.twimg.com/profile_images/1525826647605518337/yOSH43wU_400x400.png",
+    date: new Date(2022, 5, 17),
+};
+
 const SampleUser: IuserInterface = {
     name: "김용민",
+    id: "ryokuman",
+    password: "1q2w3e4r",
+    nickName: "@ryokuman",
     follower: ["김민수", "박민수", "이진형"],
-    followed: ["김민수", "박민수", "이진형"],
+    follow: ["김민수", "박민수", "이진형"],
     isLogin: true,
     profilePic:
         "https://preview.redd.it/2aoiyozxkn931.jpg?auto=webp&s=8b1060ef8b9a92d02cc785670a14d2890a0ddbf2",
-    posts: [],
+    posts: [1, 2, 3],
 };

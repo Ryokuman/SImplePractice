@@ -7,12 +7,15 @@ import Calendar from "../Component/Calendar";
 import { useState } from "react";
 
 interface IuserInterface {
-    name: string;
+    nickName: string;
     follower: string[];
-    followed: string[];
+    follow: string[];
+    name: string;
+    id: string;
+    password: string;
+    posts: number[];
     isLogin: boolean;
     profilePic: string;
-    posts: IpostInterface[];
 } // 유저 정보 인터페이스
 
 interface IpostInterface {
@@ -72,8 +75,8 @@ function ProfileBox({ user }: { user: IuserInterface }) {
                                 underline="none"
                                 color="black"
                             >
-                                <p>{user.followed.length}</p>
-                                <h3>followd</h3>
+                                <p>{user.follow.length}</p>
+                                <h3>follow</h3>
                             </Link>
                         </Grid>
                         <Grid item textAlign="center">

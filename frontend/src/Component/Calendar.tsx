@@ -155,8 +155,6 @@ function CalendarForm({ date }: { date: Date }) {
         date.getFullYear() === nowDate.getFullYear() &&
         date.getMonth() === nowDate.getMonth();
 
-    console.log(isNow);
-
     const newDate = new Date(date.getFullYear(), date.getMonth(), 1);
     const lastDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     const dayLabel = newDate.getDay();
