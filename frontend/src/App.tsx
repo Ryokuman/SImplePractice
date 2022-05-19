@@ -15,25 +15,31 @@ import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
 import Intro from "./Pages/Intro";
 
-interface IpostInterface {
-    postNum: number;
-    nickName: string;
-    title: string;
-    contents: string;
-    img: string;
-    date: Date;
-}
+declare global {
+    interface IpostInterface {
+        postNum: number;
+        nickName: string;
+        title: string;
+        contents: string;
+        img: string;
+        date: Date;
+        liked: string[];
+        comments: number[];
+    }
 
-interface IuserInterface {
-    nickName: string;
-    follower: string[];
-    follow: string[];
-    name: string;
-    id: string;
-    password: string;
-    posts: number[];
-    isLogin: boolean;
-    profilePic: string;
+    interface IuserInterface {
+        nickName: string;
+        follower: string[];
+        follow: string[];
+        name: string;
+        id: string;
+        password: string;
+        posts: number[];
+        isLogin: boolean;
+        profilePic: string;
+        likedPosts: number[];
+        likedComments: number[];
+    }
 }
 
 function App() {
@@ -42,9 +48,9 @@ function App() {
             <Header user={SampleUser} />
             <Box style={{ position: "fixed", top: "55px", width: "100%" }}>
                 <Routes>
-                    <Route path="/*" element={<Error />} />
                     <Route path="/" element={<Intro />} />
-                    <Route path=":username" element={<Main />}>
+                    <Route path=":username">
+                        <Route index element={<Main user={SampleUser} />} />
                         <Route path="notification" element={<Notification />} />
                         <Route path=":isfollow" element={<FollowFollower />} />
                     </Route>
@@ -52,6 +58,7 @@ function App() {
                     <Route path="search" element={<Search />} />
                     <Route path="signIn" element={<SignIn />} />
                     <Route path="signUp" element={<SignUp />} />
+                    <Route path="/*" element={<Error />} />
                 </Routes>
             </Box>
             <Footer />
@@ -61,42 +68,17 @@ function App() {
 
 export default App;
 
-const SmaplePost1: IpostInterface = {
-    postNum: 1,
-    nickName: "@ryokuman",
-    title: "1번 포스팅",
-    contents: "안녕하세요",
-    img: "https://blog.kakaocdn.net/dn/uVzcY/btrs8RnnubZ/hJVo53gyagmVG5XtkCvMB1/img.png",
-    date: new Date(2022, 5, 17),
-};
-
-const SmaplePost2: IpostInterface = {
-    postNum: 2,
-    nickName: "@ryokuman",
-    title: "2번 포스팅",
-    contents: "안녕하세요",
-    img: "https://www.sportager.net/files/attach/images/7370560/750/373/007/Dynamax%20System%20for%20AWD.jpg",
-    date: new Date(2022, 5, 17),
-};
-
-const SmaplePost3: IpostInterface = {
-    postNum: 3,
-    nickName: "@ryokuman",
-    title: "3번 포스팅",
-    contents: "안녕하세요",
-    img: "https://pbs.twimg.com/profile_images/1525826647605518337/yOSH43wU_400x400.png",
-    date: new Date(2022, 5, 17),
-};
-
 const SampleUser: IuserInterface = {
     name: "김용민",
     id: "ryokuman",
     password: "1q2w3e4r",
-    nickName: "@ryokuman",
+    nickName: `ryokuman`,
     follower: ["김민수", "박민수", "이진형"],
     follow: ["김민수", "박민수", "이진형"],
     isLogin: true,
     profilePic:
         "https://preview.redd.it/2aoiyozxkn931.jpg?auto=webp&s=8b1060ef8b9a92d02cc785670a14d2890a0ddbf2",
     posts: [1, 2, 3],
+    likedPosts: [1, 3],
+    likedComments: [],
 };

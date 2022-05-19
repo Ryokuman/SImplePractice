@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 
 function NotifiCation() {
-    const username = useParams<string>();
+    const { username } = useParams<string>();
 
     return (
         <div>

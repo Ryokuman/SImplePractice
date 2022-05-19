@@ -10,18 +10,6 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import "../Assets/Styles/Header.css";
 import { useState } from "react";
 
-interface IuserInterface {
-    nickName: string;
-    follower: string[];
-    follow: string[];
-    name: string;
-    id: string;
-    password: string;
-    posts: number[];
-    isLogin: boolean;
-    profilePic: string;
-}
-
 interface IloginInterface {
     isLogin: boolean;
     setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
@@ -77,13 +65,25 @@ function IconField({ isLogin, setIsLogin, user }: IloginInterface) {
             >
                 <PersonIcon color="action" />
             </Button>
-            <Button variant="text" style={{ marginTop: "2px" }} href={``}>
+            <Button
+                variant="text"
+                style={{ marginTop: "2px" }}
+                href={`http://localhost:3000/${user.nickName}/notification`}
+            >
                 <NotificationsIcon color="action" />
             </Button>
-            <Button variant="text" style={{ marginTop: "2px" }}>
+            <Button
+                variant="text"
+                style={{ marginTop: "2px" }}
+                href={`http://localhost:3000/search`}
+            >
                 <PeopleIcon color="action" />
             </Button>
-            <Button variant="text" style={{ marginTop: "2px" }}>
+            <Button
+                variant="text"
+                style={{ marginTop: "2px" }}
+                href={`http://localhost:3000/search`}
+            >
                 <ExploreIcon color="action" />
             </Button>
             <Button
@@ -154,7 +154,13 @@ function Header({ user }: { user: IuserInterface }) {
                 alignItems="center"
             >
                 <HeaderGridItem item xs={2.5}>
-                    <a href="http://localhost:3000">
+                    <a
+                        href={
+                            user.isLogin
+                                ? `http://localhost:3000/${user.nickName}`
+                                : "http://localhost:3000"
+                        }
+                    >
                         <img
                             style={{ height: "40px", marginTop: "10px" }}
                             src={require("../Assets/Images/Daylog.png")}

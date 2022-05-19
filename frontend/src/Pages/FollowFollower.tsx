@@ -22,7 +22,7 @@ function FollowFollower() {
 
     return (
         <div>
-            {isfollow === "follow" ? <FollowerLists /> : <FollowLLists />}
+            {isfollow === "follow" ? <FollowLLists /> : <FollowerLists />}
         </div>
     );
 }

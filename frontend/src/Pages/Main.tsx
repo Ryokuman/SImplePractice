@@ -7,28 +7,6 @@ import Calendar from "../Component/Calendar";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-interface IuserInterface {
-    nickName: string;
-    follow: string[];
-    follower: string[];
-    name: string;
-    id: string;
-    password: string;
-    posts: number[];
-    isLogin: boolean;
-    profilePic: string;
-    likedPosts: number[];
-    likedComments: number[];
-} // 유저 정보 인터페이스
-
-interface IpostInterface {
-    userName: string;
-    date: string;
-    title: string;
-    img: string;
-    contents: string;
-} // 포스팅 정보 인터페이스
-
 function ProfileBox({ user }: { user: IuserInterface }) {
     const [isFollowed, setIsFollowed] = useState<boolean>(true);
     const [isEntered, setIseEntered] = useState<boolean>(false);
@@ -65,7 +43,7 @@ function ProfileBox({ user }: { user: IuserInterface }) {
                     >
                         <Grid item textAlign="center">
                             <Link
-                                href="http://localhost:3000/help"
+                                href={`http://localhost:3000/${user.nickName}/follower`}
                                 underline="none"
                                 color="black"
                             >
@@ -75,7 +53,7 @@ function ProfileBox({ user }: { user: IuserInterface }) {
                         </Grid>
                         <Grid item textAlign="center">
                             <Link
-                                href="http://localhost:3000/help"
+                                href={`http://localhost:3000/${user.nickName}/follow`}
                                 underline="none"
                                 color="black"
                             >
@@ -116,23 +94,8 @@ function ProfileBox({ user }: { user: IuserInterface }) {
     );
 }
 
-function Main() {
+function Main({ user }: { user: IuserInterface }) {
     const { username } = useParams<string>();
-
-    const SampleUser: IuserInterface = {
-        name: "김용민",
-        id: "ryokuman",
-        password: "1q2w3e4r",
-        nickName: `@${username}`,
-        follower: ["김민수", "박민수", "이진형"],
-        follow: ["김민수", "박민수", "이진형"],
-        isLogin: true,
-        profilePic:
-            "https://preview.redd.it/2aoiyozxkn931.jpg?auto=webp&s=8b1060ef8b9a92d02cc785670a14d2890a0ddbf2",
-        posts: [1, 2, 3],
-        likedPosts: [1, 3],
-        likedComments: [],
-    };
 
     return (
         <Grid
@@ -144,10 +107,10 @@ function Main() {
         >
             <Grid item xs={1}></Grid>
             <Grid item xs>
-                <Calendar />
+                <Calendar user={user} />
             </Grid>
             <Grid item xs={4} marginTop="70px">
-                <ProfileBox user={SampleUser} />
+                <ProfileBox user={user} />
             </Grid>
         </Grid>
     );
