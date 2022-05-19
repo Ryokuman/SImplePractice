@@ -47,7 +47,11 @@ function SearchField({ search, setSearch }: IsearchInterface) {
                 />
             </Grid>
             <Grid item xs>
-                <Button variant="text" style={{ marginTop: "2px" }}>
+                <Button
+                    variant="text"
+                    style={{ marginTop: "2px" }}
+                    href={`http://localhost:3000/search/${search}`}
+                >
                     <SearchIcon color="action" />
                 </Button>
             </Grid>
@@ -61,14 +65,14 @@ function IconField({ isLogin, setIsLogin, user }: IloginInterface) {
             <Button
                 variant="text"
                 style={{ marginTop: "2px" }}
-                href={`http://localhost:3000/${user.nickName}`}
+                href={`http://localhost:3000/${user.id}`}
             >
                 <PersonIcon color="action" />
             </Button>
             <Button
                 variant="text"
                 style={{ marginTop: "2px" }}
-                href={`http://localhost:3000/${user.nickName}/notification`}
+                href={`http://localhost:3000/${user.id}/notification`}
             >
                 <NotificationsIcon color="action" />
             </Button>
@@ -144,11 +148,13 @@ function ToolBox({ isLogin, setIsLogin, user }: IloginInterface) {
 function Header({
     user,
     search,
+    setUser,
     setSearch,
 }: {
     user: IuserInterface;
     search: string;
     setSearch: React.Dispatch<React.SetStateAction<string>>;
+    setUser: React.Dispatch<React.SetStateAction<IuserInterface>>;
 }) {
     const [isLogin, setIsLogin] = useState<boolean>(user.isLogin);
 
@@ -164,7 +170,7 @@ function Header({
                     <a
                         href={
                             user.isLogin
-                                ? `http://localhost:3000/${user.nickName}`
+                                ? `http://localhost:3000/${user.id}`
                                 : "http://localhost:3000"
                         }
                     >
@@ -191,3 +197,17 @@ function Header({
 }
 
 export default Header;
+
+const SampleUser1: IuserInterface = {
+    name: "김용민",
+    id: "ryokuman",
+    password: "1q2w3e4r",
+    follower: ["김민수", "박민수", "이진형"],
+    follow: ["김민수", "박민수", "이진형"],
+    isLogin: true,
+    profilePic:
+        "https://preview.redd.it/2aoiyozxkn931.jpg?auto=webp&s=8b1060ef8b9a92d02cc785670a14d2890a0ddbf2",
+    posts: [1, 2, 3],
+    likedPosts: [1, 3],
+    likedComments: [],
+};

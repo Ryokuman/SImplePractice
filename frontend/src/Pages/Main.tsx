@@ -32,7 +32,7 @@ function ProfileBox({ user }: { user: IuserInterface }) {
                     />
                 </Grid>
                 <Grid item>{user.name}</Grid>
-                <Grid item>{user.nickName}</Grid>
+                <Grid item>{user.id}</Grid>
                 <Grid item>
                     <Grid
                         container
@@ -43,7 +43,7 @@ function ProfileBox({ user }: { user: IuserInterface }) {
                     >
                         <Grid item textAlign="center">
                             <Link
-                                href={`http://localhost:3000/${user.nickName}/follower`}
+                                href={`http://localhost:3000/${user.id}/follower`}
                                 underline="none"
                                 color="black"
                             >
@@ -53,7 +53,7 @@ function ProfileBox({ user }: { user: IuserInterface }) {
                         </Grid>
                         <Grid item textAlign="center">
                             <Link
-                                href={`http://localhost:3000/${user.nickName}/follow`}
+                                href={`http://localhost:3000/${user.id}/follow`}
                                 underline="none"
                                 color="black"
                             >

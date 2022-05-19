@@ -313,7 +313,7 @@ export default Calendar;
 
 const SmaplePost1: IpostInterface = {
     postNum: 1,
-    nickName: "ryokuman",
+    id: "ryokuman",
     title: "1번 포스팅",
     contents: "안녕하세요",
     img: "https://blog.kakaocdn.net/dn/uVzcY/btrs8RnnubZ/hJVo53gyagmVG5XtkCvMB1/img.png",
@@ -324,7 +324,7 @@ const SmaplePost1: IpostInterface = {
 
 const SmaplePost2: IpostInterface = {
     postNum: 2,
-    nickName: "ryokuman",
+    id: "ryokuman",
     title: "2번 포스팅",
     contents: "안녕하세요",
     img: "https://www.sportager.net/files/attach/images/7370560/750/373/007/Dynamax%20System%20for%20AWD.jpg",
@@ -335,7 +335,7 @@ const SmaplePost2: IpostInterface = {
 
 const SmaplePost3: IpostInterface = {
     postNum: 3,
-    nickName: "ryokuman",
+    id: "ryokuman",
     title: "3번 포스팅",
     contents: "안녕하세요",
     img: "https://pbs.twimg.com/profile_images/1525826647605518337/yOSH43wU_400x400.png",
@@ -346,7 +346,7 @@ const SmaplePost3: IpostInterface = {
 
 const SmaplePost4: IpostInterface = {
     postNum: 4,
-    nickName: "ryokuman",
+    id: "ryokuman",
     title: "4번 포스팅",
     contents: "안녕하세요",
     img: "https://pbs.twimg.com/profile_images/1525826647605518337/yOSH43wU_400x400.png",
@@ -357,7 +357,7 @@ const SmaplePost4: IpostInterface = {
 
 const SmaplePost5: IpostInterface = {
     postNum: 5,
-    nickName: "ryokuman",
+    id: "ryokuman",
     title: "5번 포스팅",
     contents: "안녕하세요",
     img: "https://pbs.twimg.com/profile_images/1525826647605518337/yOSH43wU_400x400.png",
