@@ -131,7 +131,8 @@ function ClaendarDateForm({
                         : "grey",
                     border: "2px solid black",
                     backgroundImage: post === null ? "" : `url(${post.img})`,
-                    backgroundSize: "100% 100%",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "none",
                 }}
             >
                 <Grid item xs={12}>

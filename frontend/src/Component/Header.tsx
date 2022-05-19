@@ -141,9 +141,16 @@ function ToolBox({ isLogin, setIsLogin, user }: IloginInterface) {
     );
 }
 
-function Header({ user }: { user: IuserInterface }) {
+function Header({
+    user,
+    search,
+    setSearch,
+}: {
+    user: IuserInterface;
+    search: string;
+    setSearch: React.Dispatch<React.SetStateAction<string>>;
+}) {
     const [isLogin, setIsLogin] = useState<boolean>(user.isLogin);
-    const [search, setSearch] = useState<string>("");
 
     return (
         <div id="Header">

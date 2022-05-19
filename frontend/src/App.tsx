@@ -43,9 +43,11 @@ declare global {
 }
 
 function App() {
+    const [search, setSearch] = useState<string>("");
+
     return (
         <Router>
-            <Header user={SampleUser} />
+            <Header search={search} setSearch={setSearch} user={SampleUser} />
             <Box style={{ position: "fixed", top: "55px", width: "100%" }}>
                 <Routes>
                     <Route path="/" element={<Intro />} />
@@ -55,7 +57,12 @@ function App() {
                         <Route path=":isfollow" element={<FollowFollower />} />
                     </Route>
                     <Route path="profile" element={<Profile />} />
-                    <Route path="search" element={<Search />} />
+                    <Route
+                        path="search"
+                        element={
+                            <Search search={search} setSearch={setSearch} />
+                        }
+                    />
                     <Route path="signIn" element={<SignIn />} />
                     <Route path="signUp" element={<SignUp />} />
                     <Route path="/*" element={<Error />} />
