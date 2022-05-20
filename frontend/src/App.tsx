@@ -50,14 +50,14 @@ function App() {
             <Header
                 search={search}
                 setSearch={setSearch}
-                user={user}
+                user={simpleuser}
                 setUser={setUser}
             />
             <Box style={{ position: "fixed", top: "55px", width: "100%" }}>
                 <Routes>
                     <Route path="/" element={<Intro />} />
                     <Route path=":username">
-                        <Route index element={<Main user={user} />} />
+                        <Route index element={<Main user={simpleuser} />} />
                         <Route path="notification" element={<Notification />} />
                         <Route path=":isfollow" element={<FollowFollower />} />
                     </Route>
@@ -75,7 +75,10 @@ function App() {
                             <Route
                                 index
                                 element={
-                                    <SignIn user={user} setUser={setUser} />
+                                    <SignIn
+                                        user={simpleuser}
+                                        setUser={setUser}
+                                    />
                                 }
                             />
                         )}
@@ -99,6 +102,20 @@ const notLogined: IuserInterface = {
     follow: [],
     isLogin: false,
     profilePic: "",
+    posts: [],
+    likedPosts: [],
+    likedComments: [],
+};
+
+const simpleuser: IuserInterface = {
+    name: "김두경",
+    id: "doookong",
+    password: "qwe",
+    follower: [],
+    follow: [],
+    isLogin: true,
+    profilePic:
+        "https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/1LNl/image/O9D-E-YAkuC8oh4kETCNUPTGyEA.jpeg",
     posts: [],
     likedPosts: [],
     likedComments: [],
