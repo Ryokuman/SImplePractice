@@ -1,7 +1,7 @@
 function Footer() {
     return (
         <div>
-            <p style={{ textAlign: "center" }}>footer</p>
+            <p style={{ textAlign: "center" }}></p>
         </div>
     );
 }
