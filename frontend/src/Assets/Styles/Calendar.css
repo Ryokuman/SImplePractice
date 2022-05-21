@@ -1,0 +1,7 @@
+.GridHoverClass:hover{
+    transform: scale(1.5);
+}
+.GridHoverClass{
+    transition : transform .2s ease-in;
+    border-width: 100px;
+}
